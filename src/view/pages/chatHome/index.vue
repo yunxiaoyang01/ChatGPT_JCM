@@ -134,13 +134,13 @@
 
     <div class="chatLeft" v-show="showSetupList">
 
-      <el-card shadow="hover" id="jianbian" style="line-height: 120%;text-align: center;">
-        <div>
-          <input class="inputs" v-model="SettingInfo.KeyMsg" :placeholder="$t('placeholder.openai_key')" type="password"
-            auto-complete="new-password" autocomplete="new-password"
-            style="width: 100%; margin-left: 0px;margin-right: 0px;" />
-        </div>
-      </el-card>
+<!--      <el-card shadow="hover" id="jianbian" style="line-height: 120%;text-align: center;">-->
+<!--        <div>-->
+<!--          <input class="inputs" v-model="SettingInfo.KeyMsg" :placeholder="$t('placeholder.openai_key')" type="password"-->
+<!--            auto-complete="new-password" autocomplete="new-password"-->
+<!--            style="width: 100%; margin-left: 0px;margin-right: 0px;" />-->
+<!--        </div>-->
+<!--      </el-card>-->
 
       <div class="online-person">
         <el-row :gutter="20">
@@ -482,7 +482,7 @@
                       :max="1" style="width: 95%;"></el-slider>
                   </div>
 
-                  <!-- 
+                  <!--
                   <div class="block">
                     <el-tooltip class="item" effect="dark" content="用于确定是否在训练过程中计算分类特定的指标，例如准确率和F-1分数,可以在结果文件中查看这些指标."
                       placement="top">
@@ -676,7 +676,7 @@ export default {
           n: 1,
           stream: true,
           echo: false,
-          stop: "",
+          stop: [],
           FrequencyPenalty: 0,
           PresencePenalty: 0,
         },

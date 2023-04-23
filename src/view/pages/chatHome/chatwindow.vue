@@ -211,6 +211,8 @@ export default {
       updateImage: null,
       // 是否隐藏对话框上方介绍（空间局促时隐藏）
       personInfoSpan: [1, 17, 6],
+      forEachNum:0,
+      longStr:""
     };
   },
 
@@ -232,6 +234,7 @@ export default {
     readStream(reader,_this, currentResLocation,type) {
         return reader.read().then(({ done, value }) => {
           if ( done ) {
+            this.longStr=""
             return;
           }
           if (!_this.chatList[currentResLocation].reminder) {
@@ -240,21 +243,29 @@ export default {
           let decoded = new TextDecoder().decode(value);
           decoded = _this.chatList[currentResLocation].reminder + decoded;
           let decodedArray = decoded.split("data: ");
-          let longstr = "";
+            this.forEachNum = this.forEachNum+1;
+            //console.log("循环次数"+this.forEachNum+"decodeArray "+ decodedArray.length)
           decodedArray.forEach(decoded => {
             try {
               decoded = decoded.trim();
-              if ( longstr == "" ){
+              console.log(decoded);
+              if ( this.longStr === "" ){
+                //console.log("longstr is empty");
                 JSON.parse(decoded);
               }else{
-                decoded = longstr + decoded;
-                longstr = "";
+                //console.log("longstr is not empty" +this.longStr);
+                decoded = this.longStr + decoded;
+                this.longStr = "";
                 JSON.parse(decoded);
+
               }
             }catch ( e ){
-              longstr = decoded;
+              console.log("error "+e)
+              console.log("longStr :"+this.longStr)
+              this.longStr = decoded;
               decoded = "";
             }
+            console.log(decoded);
             if(decoded!==""){
               if(decoded.trim()==="[DONE]"){
                 return;
@@ -262,7 +273,9 @@ export default {
                 console.log(type)
                 if(type==="chat"){
                   const response = JSON.parse(decoded).choices[0].delta.content ? JSON.parse(decoded).choices[0].delta.content : "";
+                  //console.log(response);
                   _this.chatList[currentResLocation].msg = _this.chatList[currentResLocation].msg + response
+                  //console.log(_this.chatList[currentResLocation].msg)
                   _this.scrollBottom();
                 }else{
                   const response = JSON.parse(decoded).choices[0].text;
@@ -584,7 +597,7 @@ export default {
             }else{
               this.completion(params, chatBeforResMsg)
             }
-          
+
           }
         }
         if (this.storeStatu == 0) {
@@ -672,7 +685,7 @@ export default {
          try {
             if ( this.settingInfo.chat.stream ){
               await fetch(
-                base.baseUrl+'/v1/chat/completions',{
+                'http://api.lovemenu.com.cn/v1/chat/completions',{
                   method: "POST",
                   body: JSON.stringify({
                       ...params
@@ -689,13 +702,13 @@ export default {
             });
         }else{
           await fetch(
-            base.baseUrl+'/v1/chat/completions',{
+            'http://api.lovemenu.com.cn/v1/chat/completions',{
               method: "POST",
               body: JSON.stringify({
                 ...params
               }),
               headers: {
-                Authorization: 'Bearer ' + this.settingInfo.KeyMsg,
+                // Authorization: 'Bearer ' + this.settingInfo.KeyMsg,
                 "Content-Type": "application/json",
                 Accept: "application/json",
               },
@@ -922,7 +935,7 @@ export default {
       //   createEmbeddings(formData,_this.settingInfo.KeyMsg).then(data => {
       //     _this.fileArrays = data.data[0]
       //   })
-      // };  
+      // };
       const dateNow = JCMFormatDate(getNowTime());
       let chatMsg = {
         headImg: USER_HEAD_IMG_URL,
@@ -976,7 +989,7 @@ export default {
 
 <style lang="scss" scoped>
 .iconfont:hover {
-  
+
    color: rgb(29, 144, 245);
   .block {
     opacity: 1;
