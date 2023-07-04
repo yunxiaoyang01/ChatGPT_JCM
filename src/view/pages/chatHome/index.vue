@@ -156,7 +156,6 @@
           <el-collapse-transition>
             <div v-show="SettingStatus == 0">
 
-
               <div class="block" v-show="SettingInfo.openNet">
                 <div class="block">
                   <el-tooltip class="item" effect="dark" :content="$t('model.online')" placement="top">

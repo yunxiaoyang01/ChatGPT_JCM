@@ -35,21 +35,24 @@
   <img src="https://i.328888.xyz/2023/04/09/icMh9o.png" alt="drawing" />
 </div>
 
-## 应用程序（2K的Star再更新）
+## 应用程序
+https://wweu.lanzoub.com/ia2Zy0v2fxqd  蓝奏云下载地址
 
-# 部署步骤
 
 ## 参考视频
-https://www.bilibili.com/video/BV1iL411k7pC  本地和云服务器部署视频
+https://www.bilibili.com/video/BV1BM4y187bp 使用API调用StableDiffusion生成图片简单案例
+https://www.bilibili.com/video/BV1iL411k7pC 本地+云服务器 部署此项目视频
+https://www.bilibili.com/video/BV1ss4y1d72g 此项目微调使用的简单案例
+关注我的B站，持续输出简单的入门案例
 
+# 部署步骤
 ## 本地部署
 ```
 npm install
 npm run serve
 npm run build
 ```
- 
- # 在线体验地址 (需要使用自己的OpenAI KEY)
+ # 在线体验地址 (需要使用OpenAI KEY)
 
  > https://huggingface.co/spaces/junchenmo/OpenAI-Manager
  
@@ -134,9 +137,8 @@ docker run --name my-chatgpt -p 80:80 jcm-chatgpt
 </div>
 
 
-# 进学习群加V
+# 进学习群加V&商务合作
 <div>
-  发广告秒踢，不解决其他项目问题，只针对本项目进行优化增加功能
   <img src="https://i.328888.xyz/2023/04/03/iHKA4H.jpeg" alt="drawing" width="300px" height="300px"/>
 </div>
 
